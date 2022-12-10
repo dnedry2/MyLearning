@@ -1,24 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MyDepression.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
   <Profiles />
-  <Settings>
-    <Setting Name="TFATEmailCol" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Email</Value>
-    </Setting>
-    <Setting Name="TFATTrgCol" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Course Name</Value>
-    </Setting>
-    <Setting Name="TFATDateCol" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Date Completed</Value>
-    </Setting>
-    <Setting Name="TFATFNameCol" Type="System.String" Scope="User">
-      <Value Profile="(Default)">First Name</Value>
-    </Setting>
-    <Setting Name="TFATLNameCol" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Last Name</Value>
-    </Setting>
-    <Setting Name="TFATRankCol" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Rank</Value>
-    </Setting>
-  </Settings>
+  <Settings />
 </SettingsFile>

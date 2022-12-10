@@ -95,7 +95,7 @@ namespace MyDepression
             this.ribbon = ribbonUI;
         }
 
-        TFATSettings TFATSettings = new TFATSettings();
+        TFATSettingsForm TFATSettings = new TFATSettingsForm();
 
         public void button1_Click(Office.IRibbonControl control)
         {

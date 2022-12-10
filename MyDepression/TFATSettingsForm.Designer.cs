@@ -1,6 +1,6 @@
 ﻿namespace MyDepression
 {
-    partial class TFATSettings
+    partial class TFATSettingsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -43,21 +43,23 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.trgList = new System.Windows.Forms.ListBox();
-            this.trgAddBtn = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.trgAddBtn = new System.Windows.Forms.Button();
+            this.trgList = new System.Windows.Forms.ListBox();
             this.trgViewPanel = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.trgSName = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.susBox = new System.Windows.Forms.NumericUpDown();
+            this.cbReqCiv = new System.Windows.Forms.CheckBox();
+            this.cbReqMil = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.trgFName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.cbReqMil = new System.Windows.Forms.CheckBox();
-            this.cbReqCiv = new System.Windows.Forms.CheckBox();
-            this.susBox = new System.Windows.Forms.NumericUpDown();
-            this.label9 = new System.Windows.Forms.Label();
+            this.trgSName = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -138,24 +140,22 @@
             this.lnBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MyDepression.Properties.Settings.Default, "TFATLNameCol", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.lnBox.Location = new System.Drawing.Point(92, 155);
             this.lnBox.Name = "lnBox";
             this.lnBox.Size = new System.Drawing.Size(1177, 26);
             this.lnBox.TabIndex = 8;
-            this.lnBox.Text = global::MyDepression.Properties.Settings.Default.TFATLNameCol;
+            this.lnBox.Text = "Last Name";
             // 
             // fnBox
             // 
             this.fnBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.fnBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MyDepression.Properties.Settings.Default, "TFATFNameCol", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.fnBox.Location = new System.Drawing.Point(92, 123);
             this.fnBox.Name = "fnBox";
             this.fnBox.Size = new System.Drawing.Size(1177, 26);
             this.fnBox.TabIndex = 7;
-            this.fnBox.Text = global::MyDepression.Properties.Settings.Default.TFATFNameCol;
+            this.fnBox.Text = "First Name";
             // 
             // dateBox
             // 
@@ -166,7 +166,7 @@
             this.dateBox.Name = "dateBox";
             this.dateBox.Size = new System.Drawing.Size(1177, 26);
             this.dateBox.TabIndex = 4;
-            this.dateBox.Text = global::MyDepression.Properties.Settings.Default.TFATDateCol;
+            this.dateBox.Text = "Date Completed";
             // 
             // nameBox
             // 
@@ -177,7 +177,7 @@
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(1177, 26);
             this.nameBox.TabIndex = 3;
-            this.nameBox.Text = global::MyDepression.Properties.Settings.Default.TFATTrgCol;
+            this.nameBox.Text = "Course Name";
             // 
             // emailBox
             // 
@@ -188,19 +188,18 @@
             this.emailBox.Name = "emailBox";
             this.emailBox.Size = new System.Drawing.Size(1177, 26);
             this.emailBox.TabIndex = 2;
-            this.emailBox.Text = global::MyDepression.Properties.Settings.Default.TFATEmailCol;
+            this.emailBox.Text = "Course Name";
             // 
             // rankBox
             // 
             this.rankBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rankBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MyDepression.Properties.Settings.Default, "TFATRankCol", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rankBox.Location = new System.Drawing.Point(92, 187);
             this.rankBox.Name = "rankBox";
             this.rankBox.Size = new System.Drawing.Size(1177, 26);
             this.rankBox.TabIndex = 11;
-            this.rankBox.Text = global::MyDepression.Properties.Settings.Default.TFATRankCol;
+            this.rankBox.Text = "Rank";
             // 
             // label6
             // 
@@ -255,16 +254,6 @@
             this.splitContainer1.SplitterDistance = 394;
             this.splitContainer1.TabIndex = 14;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1281, 204);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Email";
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.splitContainer2);
@@ -275,32 +264,6 @@
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Required Trainings";
-            // 
-            // trgList
-            // 
-            this.trgList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trgList.FormattingEnabled = true;
-            this.trgList.IntegralHeight = false;
-            this.trgList.ItemHeight = 20;
-            this.trgList.Location = new System.Drawing.Point(3, 3);
-            this.trgList.Name = "trgList";
-            this.trgList.Size = new System.Drawing.Size(309, 320);
-            this.trgList.TabIndex = 0;
-            this.trgList.SelectedIndexChanged += new System.EventHandler(this.trgList_SelectedIndexChanged);
-            // 
-            // trgAddBtn
-            // 
-            this.trgAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trgAddBtn.Location = new System.Drawing.Point(3, 329);
-            this.trgAddBtn.Name = "trgAddBtn";
-            this.trgAddBtn.Size = new System.Drawing.Size(309, 37);
-            this.trgAddBtn.TabIndex = 1;
-            this.trgAddBtn.Text = "Add";
-            this.trgAddBtn.UseVisualStyleBackColor = true;
-            this.trgAddBtn.Click += new System.EventHandler(this.trgAddBtn_Click);
             // 
             // splitContainer2
             // 
@@ -320,6 +283,32 @@
             this.splitContainer2.SplitterDistance = 315;
             this.splitContainer2.TabIndex = 0;
             // 
+            // trgAddBtn
+            // 
+            this.trgAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trgAddBtn.Location = new System.Drawing.Point(3, 329);
+            this.trgAddBtn.Name = "trgAddBtn";
+            this.trgAddBtn.Size = new System.Drawing.Size(309, 37);
+            this.trgAddBtn.TabIndex = 1;
+            this.trgAddBtn.Text = "Add";
+            this.trgAddBtn.UseVisualStyleBackColor = true;
+            this.trgAddBtn.Click += new System.EventHandler(this.trgAddBtn_Click);
+            // 
+            // trgList
+            // 
+            this.trgList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trgList.FormattingEnabled = true;
+            this.trgList.IntegralHeight = false;
+            this.trgList.ItemHeight = 20;
+            this.trgList.Location = new System.Drawing.Point(3, 3);
+            this.trgList.Name = "trgList";
+            this.trgList.Size = new System.Drawing.Size(309, 320);
+            this.trgList.TabIndex = 0;
+            this.trgList.SelectedIndexChanged += new System.EventHandler(this.trgList_SelectedIndexChanged);
+            // 
             // trgViewPanel
             // 
             this.trgViewPanel.Controls.Add(this.label9);
@@ -338,25 +327,57 @@
             this.trgViewPanel.TabIndex = 0;
             this.trgViewPanel.Visible = false;
             // 
-            // label7
+            // label9
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 6);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(109, 20);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Short Name:";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(18, 69);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(94, 20);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Suspense:";
             // 
-            // trgSName
+            // susBox
             // 
-            this.trgSName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.susBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trgSName.Location = new System.Drawing.Point(118, 3);
-            this.trgSName.Name = "trgSName";
-            this.trgSName.Size = new System.Drawing.Size(835, 26);
-            this.trgSName.TabIndex = 1;
-            this.trgSName.TextChanged += new System.EventHandler(this.trgSName_TextChanged);
+            this.susBox.Location = new System.Drawing.Point(118, 67);
+            this.susBox.Name = "susBox";
+            this.susBox.Size = new System.Drawing.Size(575, 26);
+            this.susBox.TabIndex = 7;
+            // 
+            // cbReqCiv
+            // 
+            this.cbReqCiv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbReqCiv.AutoSize = true;
+            this.cbReqCiv.Location = new System.Drawing.Point(828, 69);
+            this.cbReqCiv.Name = "cbReqCiv";
+            this.cbReqCiv.Size = new System.Drawing.Size(125, 24);
+            this.cbReqCiv.TabIndex = 6;
+            this.cbReqCiv.Text = "Required Civ";
+            this.cbReqCiv.UseVisualStyleBackColor = true;
+            // 
+            // cbReqMil
+            // 
+            this.cbReqMil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbReqMil.AutoSize = true;
+            this.cbReqMil.Location = new System.Drawing.Point(699, 69);
+            this.cbReqMil.Name = "cbReqMil";
+            this.cbReqMil.Size = new System.Drawing.Size(123, 24);
+            this.cbReqMil.TabIndex = 5;
+            this.cbReqMil.Text = "Required Mil";
+            this.cbReqMil.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(838, 329);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(115, 37);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Delete";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // trgFName
             // 
@@ -377,68 +398,70 @@
             this.label8.TabIndex = 2;
             this.label8.Text = "Full Name:";
             // 
-            // button2
+            // trgSName
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(838, 329);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 37);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // cbReqMil
-            // 
-            this.cbReqMil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbReqMil.AutoSize = true;
-            this.cbReqMil.Location = new System.Drawing.Point(699, 69);
-            this.cbReqMil.Name = "cbReqMil";
-            this.cbReqMil.Size = new System.Drawing.Size(123, 24);
-            this.cbReqMil.TabIndex = 5;
-            this.cbReqMil.Text = "Required Mil";
-            this.cbReqMil.UseVisualStyleBackColor = true;
-            // 
-            // cbReqCiv
-            // 
-            this.cbReqCiv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbReqCiv.AutoSize = true;
-            this.cbReqCiv.Location = new System.Drawing.Point(828, 69);
-            this.cbReqCiv.Name = "cbReqCiv";
-            this.cbReqCiv.Size = new System.Drawing.Size(125, 24);
-            this.cbReqCiv.TabIndex = 6;
-            this.cbReqCiv.Text = "Required Civ";
-            this.cbReqCiv.UseVisualStyleBackColor = true;
-            // 
-            // susBox
-            // 
-            this.susBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.trgSName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.susBox.Location = new System.Drawing.Point(118, 67);
-            this.susBox.Name = "susBox";
-            this.susBox.Size = new System.Drawing.Size(575, 26);
-            this.susBox.TabIndex = 7;
+            this.trgSName.Location = new System.Drawing.Point(118, 3);
+            this.trgSName.Name = "trgSName";
+            this.trgSName.Size = new System.Drawing.Size(835, 26);
+            this.trgSName.TabIndex = 1;
+            this.trgSName.TextChanged += new System.EventHandler(this.trgSName_TextChanged);
             // 
-            // label9
+            // label7
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(18, 69);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(94, 20);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Suspense:";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 6);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(109, 20);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Short Name:";
             // 
-            // TFATSettings
+            // groupBox2
+            // 
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1281, 204);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Email";
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(12, 858);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(115, 37);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "Import";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(133, 858);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(115, 37);
+            this.button4.TabIndex = 16;
+            this.button4.Text = "Export";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // TFATSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1305, 907);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.MinimizeBox = false;
-            this.Name = "TFATSettings";
+            this.Name = "TFATSettingsForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -495,5 +518,7 @@
         private System.Windows.Forms.NumericUpDown susBox;
         private System.Windows.Forms.CheckBox cbReqCiv;
         private System.Windows.Forms.CheckBox cbReqMil;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
