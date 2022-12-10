@@ -1,17 +1,12 @@
-﻿using MyDepression.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static MyDepression.TFAT;
 using System.Xml.Serialization;
+using static MyDepression.TFAT;
 
 namespace MyDepression
 {
@@ -35,7 +30,8 @@ namespace MyDepression
 
             public List<TFATTraining> Trainings;
             [XmlIgnore]
-            public Dictionary<Column, string> Associations {
+            public Dictionary<Column, string> Associations
+            {
                 get
                 {
                     var output = new Dictionary<Column, string>();
@@ -93,18 +89,17 @@ namespace MyDepression
             { TFAT.Column.Last, lnBox.Text },
             { TFAT.Column.Rank, rankBox.Text },
         };
-        public TFATSettingsForm()
+        public string EmailSubject() => subjBox.Text;
+        public string EmailBody() => bodyBox.Text;
+        void loadSettings(string path)
         {
-            InitializeComponent();
-
             try
             {
-                //trainings = new BindingList<TFATTraining>(LoadTrainings("TFAT_Settings.xml"));
-
-                TFATSettings settings = TFATSettings.Load("TFAT_Settings.xml");
+                TFATSettings settings = TFATSettings.Load(path);
                 trainings = new BindingList<TFATTraining>(settings.Trainings);
 
-                foreach (var pair in settings.AssociationsList) {
+                foreach (var pair in settings.AssociationsList)
+                {
                     switch (pair.Col)
                     {
                         case TFAT.Column.Email:
@@ -127,15 +122,22 @@ namespace MyDepression
 
                 subjBox.Text = settings.EmailSubj;
                 bodyBox.Text = Encoding.Unicode.GetString(Convert.FromBase64String(settings.EmailBody));
-            } catch
+            }
+            catch
             {
-                
+
             }
 
             if (trainings.Count == 0)
                 trgAddBtn_Click(null, null);
 
             trgList.DataSource = trainings;
+        }
+        public TFATSettingsForm()
+        {
+            InitializeComponent();
+
+            loadSettings("TFAT_Settings.xml");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -195,12 +197,14 @@ namespace MyDepression
                 var sfd = new OpenFileDialog() { Filter = "XML Document|*.xml" };
 
                 if (sfd.ShowDialog() == DialogResult.OK)
-                    trainings = new BindingList<TFAT.TFATTraining>(TFAT.LoadTrainings(sfd.FileName));
+                    loadSettings(sfd.FileName);
 
                 trgList.DataSource = null;
                 trgList.DataSource = trainings;
 
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show("Error:\n" + ex.Message);
             }
         }
@@ -212,7 +216,7 @@ namespace MyDepression
                 var sfd = new SaveFileDialog() { Filter = "XML Document|*.xml" };
 
                 if (sfd.ShowDialog() == DialogResult.OK)
-                    SaveTrainings(sfd.FileName, Trainings());
+                    new TFATSettings(Trainings(), Associations().ToList(), subjBox.Text, Convert.ToBase64String(Encoding.Unicode.GetBytes(bodyBox.Text))).Save(sfd.FileName);
 
             }
             catch (Exception ex)

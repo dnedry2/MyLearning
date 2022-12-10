@@ -1,15 +1,12 @@
-﻿using Microsoft.Office.Tools.Ribbon;
+﻿using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
-using Office = Microsoft.Office.Core;
 using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Interop.Excel;
+using Office = Microsoft.Office.Core;
 
 namespace MyDepression
 {
@@ -55,7 +52,7 @@ namespace MyDepression
 
             return null;
         }
-        
+
         List<TFAT.TFATTraining> LoadTrainings()
         {
             List<TFAT.TFATTraining> trainings;
@@ -120,7 +117,8 @@ namespace MyDepression
             try
             {
                 table = tracker.ListObjects["TFAT Table"];
-            } catch
+            }
+            catch
             {
                 MessageBox.Show("TFAT Table was not found.");
                 return;
@@ -137,7 +135,40 @@ namespace MyDepression
         }
         public void button2_Click(Office.IRibbonControl control)
         {
+            Excel.Worksheet tracker = null;
 
+            foreach (var sheet in Globals.ThisAddIn.Application.Worksheets)
+            {
+                Excel.Worksheet ws = sheet as Excel.Worksheet;
+
+                if (ws != null && ws.Name == "TFAT Tracker")
+                    tracker = ws;
+            }
+
+            if (tracker == null)
+            {
+                MessageBox.Show("TFAT Tracker worksheet was not found. Create one before updating.");
+                return;
+            }
+
+            ListObject table;
+
+            try
+            {
+                table = tracker.ListObjects["TFAT Table"];
+            }
+            catch
+            {
+                MessageBox.Show("TFAT Table was not found.");
+                return;
+            }
+
+            var trainings = LoadTrainings();
+
+            if (trainings == null)
+                return;
+
+            TFAT.EmailNotification(table, trainings, TFATSettings.EmailSubject(), TFATSettings.EmailBody());
         }
 
         public void button3_Click(Office.IRibbonControl control)
@@ -159,7 +190,8 @@ namespace MyDepression
             try
             {
                 tracker.Name = "TFAT Tracker";
-            } catch
+            }
+            catch
             {
                 MessageBox.Show("Failed to create TFAT Tracker worksheet. (Does it already exist?)");
                 return;
@@ -199,7 +231,7 @@ namespace MyDepression
                 tracker.Cells[2 + i, 1] = person.LastName;
                 tracker.Cells[2 + i, 2] = person.FirstName;
                 tracker.Cells[2 + i, 3] = person.Rank;
-                tracker.Cells[2 + i, 4] = person.IsMil? "Mil" : "Civ";
+                tracker.Cells[2 + i, 4] = person.IsMil ? "Mil" : "Civ";
                 tracker.Cells[2 + i, 5] = person.Organization;
                 tracker.Cells[2 + i, 6] = person.Email;
 

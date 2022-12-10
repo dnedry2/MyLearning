@@ -1,16 +1,11 @@
-﻿using Excel = Microsoft.Office.Interop.Excel;
-
-using System.Collections.Generic;
+﻿using Microsoft.Office.Interop.Excel;
 using System;
-using Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
-using System.Xml.Serialization;
+using System.Collections.Generic;
 using System.IO;
-using Microsoft.Office.Tools.Excel;
-using ListObject = Microsoft.Office.Interop.Excel.ListObject;
 using System.Windows.Forms;
-using System.Runtime.CompilerServices;
-using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Serialization;
+using Excel = Microsoft.Office.Interop.Excel;
+using ListObject = Microsoft.Office.Interop.Excel.ListObject;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace MyDepression
@@ -97,6 +92,66 @@ namespace MyDepression
                 xml.Serialize(fs, trainings);
         }
 
+        static Dictionary<string, int> validate(ListObject table, List<TFATTraining> trainings)
+        {
+            // Validate table
+            var cols = new Dictionary<string, int>();
+
+            int idx = 1;
+            foreach (var header in table.HeaderRowRange.Cells)
+            {
+                try
+                {
+                    string text = (header as Range).Text;
+                    if (text == "Email")
+                    {
+                        cols.Add("Email", idx);
+                    }
+                    else if (text == "Affiliation")
+                    {
+                        cols.Add("Affiliation", idx);
+                    }
+                    else
+                    {
+                        foreach (var trg in trainings)
+                        {
+                            if (text == trg.SafeName)
+                            {
+                                cols.Add(trg.SafeName, idx);
+                                break;
+                            }
+                        }
+                    }
+                }
+                finally
+                {
+                    idx++;
+                }
+            }
+
+            if (!cols.ContainsKey("Email"))
+            {
+                MessageBox.Show("Failed to find a column for \"Email\" in the tracker table. You must add one to continue.");
+                return null;
+            }
+            if (!cols.ContainsKey("Affiliation"))
+            {
+                MessageBox.Show("Failed to find a column for \"Affiliation\" in the tracker table. You must add one to continue.");
+                return null;
+            }
+
+            foreach (var trg in trainings)
+            {
+                if (!cols.ContainsKey(trg.SafeName))
+                {
+                    MessageBox.Show("Failed to find a column for \"" + trg.SafeName + "\"  in the tracker table. You must add one or remove it from the required trainings list.");
+                    return null;
+                }
+            }
+
+            return cols;
+        }
+
         public static List<TFATRecord> ParseTFAT(Excel.Worksheet sheet, Dictionary<Column, string> colNames)
         {
             // Warning, excel docs are 1 based
@@ -113,7 +168,7 @@ namespace MyDepression
                 last = -1,
                 email = -1,
                 rank = -1,
-                trg = -1, 
+                trg = -1,
                 date = -1;
 
             for (int i = 1; i < colCnt + 1; i++)
@@ -152,7 +207,8 @@ namespace MyDepression
                 try
                 {
                     return (data.Cells[row, col] as Range).Text;
-                } catch
+                }
+                catch
                 {
                     return "";
                 }
@@ -173,63 +229,15 @@ namespace MyDepression
 
             return output;
         }
-    
+
         public static void UpdateTFATTable(ListObject table, List<TFATRecord> records, List<TFATTraining> trainings)
         {
             // Validate table
-            var cols = new Dictionary<string, int>();
+            var cols = validate(table, trainings);
 
-            int idx = 1;
-            foreach (var header in table.HeaderRowRange.Cells)
-            {
-                try
-                {
-                    string text = (header as Range).Text;
-                    if (text == "Email")
-                    {
-                        cols.Add("Email", idx);
-                    }
-                    else if (text == "Affiliation")
-                    {
-                        cols.Add("Affiliation", idx);
-                    }
-                    else
-                    {
-                        foreach (var trg in trainings)
-                        {
-                            if (text == trg.SafeName)
-                            {
-                                cols.Add(trg.SafeName, idx);
-                                break;
-                            }
-                        }
-                    }
-                }
-                finally {
-                    idx++;
-                }
-            }
-
-            if (!cols.ContainsKey("Email"))
-            {
-                MessageBox.Show("Failed to find a column for \"Email\" in the tracker table. You must add one to continue.");
+            if (cols == null)
                 return;
-            }
-            if (!cols.ContainsKey("Affiliation"))
-            {
-                MessageBox.Show("Failed to find a column for \"Affiliation\" in the tracker table. You must add one to continue.");
-                return;
-            }
 
-            foreach (var trg in trainings)
-            {
-                if (!cols.ContainsKey(trg.SafeName))
-                {
-                    MessageBox.Show("Failed to find a column for \"" + trg.SafeName + "\"  in the tracker table. You must add one or remove it from the required trainings list.");
-                    return;
-                }
-            }
-            
             // People list
             var pplData = new Dictionary<string, Range>();
 
@@ -238,9 +246,10 @@ namespace MyDepression
                 try
                 {
                     Range range = (row as ListRow).Range;
-                    
+
                     pplData.Add((range.Cells[1, cols["Email"]] as Range).Text, range);
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show("Error:\n" + ex.Message);
                 }
@@ -297,12 +306,13 @@ namespace MyDepression
                             cell.Style = "Good";
                     }
 
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show("Error:\n" + ex.Message);
                 }
             }
-            
+
 
             // Check non updated trainings
             foreach (var pers in pplData.Values)
@@ -332,17 +342,77 @@ namespace MyDepression
                             cell.Style = "Bad";
                             cell.Value2 = "Not Complete";
                         }
-                    } catch { }
+                    }
+                    catch { }
                 }
             }
-            /*
+        }
+
+        static string parseEmail(string message, TFATTraining trg)
+        {
+            string dateStr = "Morning";
+
+
+            return message.Replace("$ShortName", trg.SafeName)
+                          .Replace("$FullName", trg.Name)
+                          .Replace("$Suspense", Convert.ToString(trg.Suspense))
+                          .Replace("$Time", dateStr);
+        }
+
+        public static void EmailNotification(ListObject table, List<TFATTraining> trainings, string subj, string body)
+        {
+            // Validate table
+            var cols = validate(table, trainings);
+
+            if (cols == null)
+                return;
+
             Outlook.Application oApp = new Outlook.Application();
-            Outlook.MailItem mailItem = (Outlook.MailItem)oApp.CreateItem(Outlook.OlItemType.olMailItem);
-            mailItem.Subject = "This is the subject";
-            mailItem.To = "someone@example.com";
-            mailItem.Body = "This is the message.";
-            mailItem.Display(false);
-            */
+
+            Dictionary<string, TFATTraining> uniqueTrgs = new Dictionary<string, TFATTraining>();
+            foreach (var trg in trainings)
+                uniqueTrgs[trg.SafeName] = trg;
+
+            // People list
+            var pplData = new Dictionary<string, Range>();
+
+            foreach (var row in table.ListRows)
+            {
+                try
+                {
+                    Range range = (row as ListRow).Range;
+
+                    pplData.Add((range.Cells[1, cols["Email"]] as Range).Text, range);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error:\n" + ex.Message);
+                }
+            }
+
+            // Generate emails
+            foreach (var trg in uniqueTrgs.Values)
+            {
+                string to = "";
+
+                foreach (var p in pplData)
+                {
+                    string style = (p.Value.Cells[1, cols[trg.SafeName]].Style as Style).Value;
+                    
+                    if (style == "Bad")
+                        to += p.Key + ";";
+                }
+
+                if (to == "")
+                    continue;
+
+
+                Outlook.MailItem mailItem = (Outlook.MailItem)oApp.CreateItem(Outlook.OlItemType.olMailItem);
+                mailItem.Subject = parseEmail(subj, trg);
+                mailItem.To = to;
+                mailItem.Body = parseEmail(body, trg);
+                mailItem.Display(false);
+            }
         }
     }
 }
