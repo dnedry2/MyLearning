@@ -47,13 +47,17 @@ namespace MyDepression
                 }
             }
             public List<ColPair> AssociationsList;
+            public string EmailSubj;
+            public string EmailBody;
 
             public TFATSettings() { }
-            public TFATSettings(List<TFATTraining> trainings, List<KeyValuePair<Column, string>> associations)
+            public TFATSettings(List<TFATTraining> trainings, List<KeyValuePair<Column, string>> associations, string emailSubj, string emailBody)
             {
                 Trainings = trainings ?? throw new ArgumentNullException(nameof(trainings));
-                AssociationsList = new List<ColPair>();
+                EmailSubj = emailSubj ?? throw new ArgumentNullException(nameof(emailSubj));
+                EmailBody = emailBody ?? throw new ArgumentNullException(nameof(emailBody));
 
+                AssociationsList = new List<ColPair>();
                 foreach (var val in associations)
                     AssociationsList.Add(new ColPair(val.Key, val.Value));
             }
@@ -120,6 +124,9 @@ namespace MyDepression
                             break;
                     }
                 }
+
+                subjBox.Text = settings.EmailSubj;
+                bodyBox.Text = Encoding.Unicode.GetString(Convert.FromBase64String(settings.EmailBody));
             } catch
             {
                 
@@ -127,8 +134,6 @@ namespace MyDepression
 
             if (trainings.Count == 0)
                 trgAddBtn_Click(null, null);
-
-            
 
             trgList.DataSource = trainings;
         }
@@ -145,7 +150,7 @@ namespace MyDepression
 
         private void TFATAssociation_FormClosing(object sender, FormClosingEventArgs e)
         {
-            new TFATSettings(Trainings(), Associations().ToList()).Save("TFAT_Settings.xml");
+            new TFATSettings(Trainings(), Associations().ToList(), subjBox.Text, Convert.ToBase64String(Encoding.Unicode.GetBytes(bodyBox.Text))).Save("TFAT_Settings.xml");
         }
 
         private void trgAddBtn_Click(object sender, EventArgs e)

@@ -60,6 +60,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.subjBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.bodyBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -72,6 +76,7 @@
             this.splitContainer2.SuspendLayout();
             this.trgViewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.susBox)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -251,7 +256,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
             this.splitContainer1.Size = new System.Drawing.Size(1281, 602);
-            this.splitContainer1.SplitterDistance = 394;
+            this.splitContainer1.SplitterDistance = 265;
             this.splitContainer1.TabIndex = 14;
             // 
             // groupBox3
@@ -260,7 +265,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1281, 394);
+            this.groupBox3.Size = new System.Drawing.Size(1281, 265);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Required Trainings";
@@ -279,7 +284,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.trgViewPanel);
-            this.splitContainer2.Size = new System.Drawing.Size(1275, 369);
+            this.splitContainer2.Size = new System.Drawing.Size(1275, 240);
             this.splitContainer2.SplitterDistance = 315;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -287,7 +292,7 @@
             // 
             this.trgAddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trgAddBtn.Location = new System.Drawing.Point(3, 329);
+            this.trgAddBtn.Location = new System.Drawing.Point(3, 200);
             this.trgAddBtn.Name = "trgAddBtn";
             this.trgAddBtn.Size = new System.Drawing.Size(309, 37);
             this.trgAddBtn.TabIndex = 1;
@@ -305,7 +310,7 @@
             this.trgList.ItemHeight = 20;
             this.trgList.Location = new System.Drawing.Point(3, 3);
             this.trgList.Name = "trgList";
-            this.trgList.Size = new System.Drawing.Size(309, 320);
+            this.trgList.Size = new System.Drawing.Size(309, 191);
             this.trgList.TabIndex = 0;
             this.trgList.SelectedIndexChanged += new System.EventHandler(this.trgList_SelectedIndexChanged);
             // 
@@ -323,7 +328,7 @@
             this.trgViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trgViewPanel.Location = new System.Drawing.Point(0, 0);
             this.trgViewPanel.Name = "trgViewPanel";
-            this.trgViewPanel.Size = new System.Drawing.Size(956, 369);
+            this.trgViewPanel.Size = new System.Drawing.Size(956, 240);
             this.trgViewPanel.TabIndex = 0;
             this.trgViewPanel.Visible = false;
             // 
@@ -371,7 +376,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(838, 329);
+            this.button2.Location = new System.Drawing.Point(838, 200);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(115, 37);
             this.button2.TabIndex = 4;
@@ -420,10 +425,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.bodyBox);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.subjBox);
+            this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1281, 204);
+            this.groupBox2.Size = new System.Drawing.Size(1281, 333);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Email";
@@ -449,6 +458,46 @@
             this.button4.Text = "Export";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 31);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(75, 20);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Subject:";
+            // 
+            // subjBox
+            // 
+            this.subjBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.subjBox.Location = new System.Drawing.Point(87, 28);
+            this.subjBox.Name = "subjBox";
+            this.subjBox.Size = new System.Drawing.Size(1188, 26);
+            this.subjBox.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(27, 60);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 20);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Body:";
+            // 
+            // bodyBox
+            // 
+            this.bodyBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bodyBox.Location = new System.Drawing.Point(90, 60);
+            this.bodyBox.Multiline = true;
+            this.bodyBox.Name = "bodyBox";
+            this.bodyBox.Size = new System.Drawing.Size(1188, 267);
+            this.bodyBox.TabIndex = 3;
             // 
             // TFATSettingsForm
             // 
@@ -482,6 +531,8 @@
             this.trgViewPanel.ResumeLayout(false);
             this.trgViewPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.susBox)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -520,5 +571,9 @@
         private System.Windows.Forms.CheckBox cbReqMil;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox subjBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox bodyBox;
+        private System.Windows.Forms.Label label11;
     }
 }
