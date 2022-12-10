@@ -172,8 +172,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TFATAssociation.resx">
-      <DependentUpon>TFATAssociation.cs</DependentUpon>
+    <EmbeddedResource Include="TFATSettings.resx">
+      <DependentUpon>TFATSettings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="MyDepression_TemporaryKey.pfx" />
@@ -191,11 +191,11 @@
       <XmlRibbon>true</XmlRibbon>
     </Compile>
     <Compile Include="TFAT.cs" />
-    <Compile Include="TFATAssociation.cs">
+    <Compile Include="TFATSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TFATAssociation.Designer.cs">
-      <DependentUpon>TFATAssociation.cs</DependentUpon>
+    <Compile Include="TFATSettings.Designer.cs">
+      <DependentUpon>TFATSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>

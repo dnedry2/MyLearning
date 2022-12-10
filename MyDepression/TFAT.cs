@@ -57,7 +57,7 @@ namespace MyDepression
             }
         }
         [Serializable]
-        public struct TFATTraining
+        public class TFATTraining
         {
             public string SafeName { get; set; }
             public string Name { get; set; }
@@ -65,6 +65,7 @@ namespace MyDepression
             public bool ReqMil { get; set; }
             public bool ReqCiv { get; set; }
 
+            public TFATTraining() { }
             public TFATTraining(string safeName, string name, int suspense, bool reqMil, bool reqCiv)
             {
                 SafeName = safeName ?? throw new ArgumentNullException(nameof(safeName));
@@ -73,6 +74,8 @@ namespace MyDepression
                 ReqMil = reqMil;
                 ReqCiv = reqCiv;
             }
+
+            public override string ToString() => SafeName;
         }
 
         public static List<TFATTraining> LoadTrainings(string path)

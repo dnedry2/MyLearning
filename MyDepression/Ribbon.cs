@@ -20,6 +20,7 @@ namespace MyDepression
 
         public Ribbon()
         {
+            /*
             List<TFAT.TFATTraining> trainings = new List<TFAT.TFATTraining>
             {
                 new TFAT.TFATTraining("Force Protection", "Force Protection (ZZ133079)", 12, true, false),
@@ -28,6 +29,7 @@ namespace MyDepression
             };
 
             TFAT.SaveTrainings("trainings.xml", trainings);
+            */
         }
 
         List<TFAT.TFATRecord> LoadRecords()
@@ -93,7 +95,7 @@ namespace MyDepression
             this.ribbon = ribbonUI;
         }
 
-        TFATAssociation TFATSettings = new TFATAssociation();
+        TFATSettings TFATSettings = new TFATSettings();
 
         public void button1_Click(Office.IRibbonControl control)
         {
