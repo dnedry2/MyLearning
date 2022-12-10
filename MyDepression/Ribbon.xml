@@ -9,10 +9,6 @@
 					<button id="button4" imageMso="TableAutoFormat" onAction="button4_Click" label="New Tracker" />
                     <button id="button3" imageMso="TableSharePointListsModifyColumnsAndSettings" onAction="button3_Click" label="Setup" />
                 </group>
-				<group id="group2" label="Other">
-					<button id="button5" imageMso="TableAutoFormat" size="large" label="why james cryin" />
-					
-				</group>
             </tab>
         </tabs>
     </ribbon>
