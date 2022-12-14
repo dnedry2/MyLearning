@@ -58,7 +58,7 @@ namespace MyDepression
             List<TFAT.TFATTraining> trainings;
             try
             {
-                trainings = TFAT.LoadTrainings("trainings.xml");
+                trainings = TFATSettings.Trainings();
             }
             catch (Exception ex)
             {
@@ -86,7 +86,7 @@ namespace MyDepression
 
         #region Ribbon Callbacks
         //Create callback methods here. For more information about adding callback methods, visit https://go.microsoft.com/fwlink/?LinkID=271226
-
+        
         public void Ribbon_Load(Office.IRibbonUI ribbonUI)
         {
             this.ribbon = ribbonUI;
