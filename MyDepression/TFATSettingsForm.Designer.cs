@@ -45,10 +45,11 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.trgAddBtn = new System.Windows.Forms.Button();
-            this.trgList = new System.Windows.Forms.ListBox();
             this.trgViewPanel = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
+            this.trgList = new System.Windows.Forms.ListBox();
             this.susBox = new System.Windows.Forms.NumericUpDown();
             this.cbReqCiv = new System.Windows.Forms.CheckBox();
             this.cbReqMil = new System.Windows.Forms.CheckBox();
@@ -74,6 +75,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.trgViewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.susBox)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -280,8 +282,8 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.panel1);
             this.splitContainer2.Panel1.Controls.Add(this.trgAddBtn);
-            this.splitContainer2.Panel1.Controls.Add(this.trgList);
             // 
             // splitContainer2.Panel2
             // 
@@ -289,6 +291,17 @@
             this.splitContainer2.Size = new System.Drawing.Size(1275, 240);
             this.splitContainer2.SplitterDistance = 315;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.trgList);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(315, 197);
+            this.panel1.TabIndex = 2;
             // 
             // trgAddBtn
             // 
@@ -300,20 +313,6 @@
             this.trgAddBtn.Text = "Add";
             this.trgAddBtn.UseVisualStyleBackColor = true;
             this.trgAddBtn.Click += new System.EventHandler(this.trgAddBtn_Click);
-            // 
-            // trgList
-            // 
-            this.trgList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trgList.FormattingEnabled = true;
-            this.trgList.IntegralHeight = false;
-            this.trgList.ItemHeight = 20;
-            this.trgList.Location = new System.Drawing.Point(3, 3);
-            this.trgList.Name = "trgList";
-            this.trgList.Size = new System.Drawing.Size(309, 194);
-            this.trgList.TabIndex = 0;
-            this.trgList.SelectedIndexChanged += new System.EventHandler(this.trgList_SelectedIndexChanged);
             // 
             // trgViewPanel
             // 
@@ -342,6 +341,18 @@
             this.label9.Size = new System.Drawing.Size(94, 20);
             this.label9.TabIndex = 8;
             this.label9.Text = "Suspense:";
+            // 
+            // trgList
+            // 
+            this.trgList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trgList.FormattingEnabled = true;
+            this.trgList.IntegralHeight = false;
+            this.trgList.ItemHeight = 20;
+            this.trgList.Location = new System.Drawing.Point(0, 0);
+            this.trgList.Name = "trgList";
+            this.trgList.Size = new System.Drawing.Size(315, 197);
+            this.trgList.TabIndex = 0;
+            this.trgList.SelectedIndexChanged += new System.EventHandler(this.trgList_SelectedIndexChanged);
             // 
             // susBox
             // 
@@ -530,6 +541,7 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.trgViewPanel.ResumeLayout(false);
             this.trgViewPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.susBox)).EndInit();
@@ -577,5 +589,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox bodyBox;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel1;
     }
 }

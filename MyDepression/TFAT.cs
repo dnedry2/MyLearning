@@ -251,7 +251,7 @@ namespace MyDepression
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error:\n" + ex.Message);
+                    new ExceptionForm(ex).ShowDialog();
                 }
             }
 
@@ -274,6 +274,10 @@ namespace MyDepression
                     if (!safeNames.ContainsKey(rec.Training))
                         continue;
 
+                    // Skip people that are not in the people list
+                    if (!pplData.ContainsKey(rec.Member.Email))
+                        continue;
+
                     Range cell = pplData[rec.Member.Email].Cells[1, cols[safeNames[rec.Training]]];
 
                     DateTime? date = rec.Date;
@@ -288,41 +292,28 @@ namespace MyDepression
                     }
 
                     if (date.HasValue)
-                    {
-                        var trg = trgMap[rec.Training];
-
                         cell.Value2 = date.Value.ToShortDateString();
-
-                        DateTime sus = date.Value.AddMonths(trg.Suspense);
-
-                        int diff = (DateTime.Now - sus).Days;
-
-
-                        if (diff >= 0)
-                            cell.Style = "Bad";
-                        else if (diff >= -30)
-                            cell.Style = "Neutral";
-                        else
-                            cell.Style = "Good";
-                    }
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error:\n" + ex.Message);
+                    new ExceptionForm(ex).ShowDialog();
                 }
             }
-
 
             // Check non updated trainings
             foreach (var pers in pplData.Values)
             {
+                // Skip blank lines
+                if (pers.Text as string == "")
+                    continue;
+
                 string affil = ((pers.Cells[1, cols["Affiliation"]] as Range).Text as string).ToLower();
                 bool mil = affil == "mil";
 
                 if (affil != "civ" && affil != "mil")
                 {
-                    MessageBox.Show("Affiliations must be either \"Mil\" or \"Civ\".");
+                    MessageBox.Show("Affiliations must be either \"Mil\" or \"Civ\". Was \"" + affil + "\"");
                     continue;
                 }
 
@@ -341,6 +332,29 @@ namespace MyDepression
                         {
                             cell.Style = "Bad";
                             cell.Value2 = "Not Complete";
+                        } else
+                        {
+                            DateTime? date = null;
+
+                            DateTime val;
+                            if (DateTime.TryParse(cell.Value.ToString(), out val))
+                                date = val;
+
+                            if (date.HasValue)
+                            {
+                                cell.Value2 = date.Value.ToShortDateString();
+
+                                DateTime sus = date.Value.AddMonths(trg.Suspense);
+
+                                int diff = (DateTime.Now - sus).Days;
+
+                                if (diff >= 0)
+                                    cell.Style = "Bad";
+                                else if (diff >= -30)
+                                    cell.Style = "Neutral";
+                                else
+                                    cell.Style = "Good";
+                            }
                         }
                     }
                     catch { }
@@ -352,6 +366,10 @@ namespace MyDepression
         {
             string dateStr = "Morning";
 
+            if (DateTime.Now.Hour >= 11)
+                dateStr = "Afternoon";
+            if (DateTime.Now.Hour >= 18)
+                dateStr = "Evening";
 
             return message.Replace("$ShortName", trg.SafeName)
                           .Replace("$FullName", trg.Name)
@@ -386,7 +404,7 @@ namespace MyDepression
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error:\n" + ex.Message);
+                    new ExceptionForm(ex).ShowDialog();
                 }
             }
 

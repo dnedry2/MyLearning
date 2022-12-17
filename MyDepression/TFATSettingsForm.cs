@@ -205,7 +205,7 @@ namespace MyDepression
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:\n" + ex.Message);
+                new ExceptionForm(ex).ShowDialog();
             }
         }
 
@@ -221,7 +221,7 @@ namespace MyDepression
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:\n" + ex.Message);
+                new ExceptionForm(ex).ShowDialog();
             }
         }
     }

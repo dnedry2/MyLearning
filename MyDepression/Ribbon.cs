@@ -46,7 +46,7 @@ namespace MyDepression
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to load document!\n" + ex.Message);
+                    new ExceptionForm(ex, "Failed to load document!").ShowDialog();
                 }
             }
 
@@ -62,7 +62,7 @@ namespace MyDepression
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to load trainings!\n" + ex.Message);
+                new ExceptionForm(ex, "Failed to load trainings!").ShowDialog();
                 return null;
             }
 
@@ -147,7 +147,7 @@ namespace MyDepression
 
             if (tracker == null)
             {
-                MessageBox.Show("TFAT Tracker worksheet was not found. Create one before updating.");
+                MessageBox.Show("TFAT Tracker worksheet was not found.");
                 return;
             }
 
