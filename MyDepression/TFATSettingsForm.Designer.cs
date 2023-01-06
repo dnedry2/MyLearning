@@ -46,10 +46,10 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.trgList = new System.Windows.Forms.ListBox();
             this.trgAddBtn = new System.Windows.Forms.Button();
             this.trgViewPanel = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.trgList = new System.Windows.Forms.ListBox();
             this.susBox = new System.Windows.Forms.NumericUpDown();
             this.cbReqCiv = new System.Windows.Forms.CheckBox();
             this.cbReqMil = new System.Windows.Forms.CheckBox();
@@ -65,6 +65,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.codeBox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -303,6 +305,18 @@
             this.panel1.Size = new System.Drawing.Size(315, 197);
             this.panel1.TabIndex = 2;
             // 
+            // trgList
+            // 
+            this.trgList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trgList.FormattingEnabled = true;
+            this.trgList.IntegralHeight = false;
+            this.trgList.ItemHeight = 20;
+            this.trgList.Location = new System.Drawing.Point(0, 0);
+            this.trgList.Name = "trgList";
+            this.trgList.Size = new System.Drawing.Size(315, 197);
+            this.trgList.TabIndex = 0;
+            this.trgList.SelectedIndexChanged += new System.EventHandler(this.trgList_SelectedIndexChanged);
+            // 
             // trgAddBtn
             // 
             this.trgAddBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -316,6 +330,8 @@
             // 
             // trgViewPanel
             // 
+            this.trgViewPanel.Controls.Add(this.label12);
+            this.trgViewPanel.Controls.Add(this.codeBox);
             this.trgViewPanel.Controls.Add(this.label9);
             this.trgViewPanel.Controls.Add(this.susBox);
             this.trgViewPanel.Controls.Add(this.cbReqCiv);
@@ -341,18 +357,6 @@
             this.label9.Size = new System.Drawing.Size(94, 20);
             this.label9.TabIndex = 8;
             this.label9.Text = "Suspense:";
-            // 
-            // trgList
-            // 
-            this.trgList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trgList.FormattingEnabled = true;
-            this.trgList.IntegralHeight = false;
-            this.trgList.ItemHeight = 20;
-            this.trgList.Location = new System.Drawing.Point(0, 0);
-            this.trgList.Name = "trgList";
-            this.trgList.Size = new System.Drawing.Size(315, 197);
-            this.trgList.TabIndex = 0;
-            this.trgList.SelectedIndexChanged += new System.EventHandler(this.trgList_SelectedIndexChanged);
             // 
             // susBox
             // 
@@ -512,6 +516,25 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // codeBox
+            // 
+            this.codeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.codeBox.Location = new System.Drawing.Point(118, 99);
+            this.codeBox.Name = "codeBox";
+            this.codeBox.Size = new System.Drawing.Size(153, 26);
+            this.codeBox.TabIndex = 9;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(56, 102);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(56, 20);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Code:";
+            // 
             // TFATSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -590,5 +613,7 @@
         private System.Windows.Forms.TextBox bodyBox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox codeBox;
     }
 }

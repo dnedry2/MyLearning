@@ -94,7 +94,7 @@ namespace MyDepression
 
         TFATSettingsForm TFATSettings = new TFATSettingsForm();
 
-        public void button1_Click(Office.IRibbonControl control)
+        Worksheet getTracker()
         {
             Excel.Worksheet tracker = null;
 
@@ -105,6 +105,13 @@ namespace MyDepression
                 if (ws != null && ws.Name == "TFAT Tracker")
                     tracker = ws;
             }
+
+            return tracker;
+        }
+
+        public void button1_Click(Office.IRibbonControl control)
+        {
+            Excel.Worksheet tracker = getTracker();
 
             if (tracker == null)
             {
@@ -135,15 +142,7 @@ namespace MyDepression
         }
         public void button2_Click(Office.IRibbonControl control)
         {
-            Excel.Worksheet tracker = null;
-
-            foreach (var sheet in Globals.ThisAddIn.Application.Worksheets)
-            {
-                Excel.Worksheet ws = sheet as Excel.Worksheet;
-
-                if (ws != null && ws.Name == "TFAT Tracker")
-                    tracker = ws;
-            }
+            Excel.Worksheet tracker = getTracker();
 
             if (tracker == null)
             {
@@ -244,11 +243,55 @@ namespace MyDepression
             TFAT.UpdateTFATTable(tracker.ListObjects["TFAT Table"], records, trainings);
         }
 
+        public void button5_Click(Office.IRibbonControl control)
+        {
+            Excel.Worksheet tracker = getTracker();
+
+            if (tracker == null)
+            {
+                MessageBox.Show("TFAT Tracker worksheet was not found.");
+                return;
+            }
+
+            ListObject table;
+
+            try
+            {
+                table = tracker.ListObjects["TFAT Table"];
+            }
+            catch
+            {
+                MessageBox.Show("TFAT Table was not found.");
+                return;
+            }
+
+            var trainings = LoadTrainings();
+
+            if (trainings == null)
+                return;
+
+            Worksheet output = (Worksheet)Globals.ThisAddIn.Application.Worksheets.Add();
+            string name = "TFAT Statistics (" + DateTime.Now.ToShortDateString().Replace('/', '-') + ")";
+
+            try
+            {
+
+                output.Name = name;
+            }
+            catch
+            {
+                MessageBox.Show("Failed to create \"" + name + "\" worksheet. (Does it already exist?)");
+                return;
+            }
+
+            TFAT.CalculateStatistics(table, output, trainings);
+        }
+
         #endregion
 
-        #region Helpers
+            #region Helpers
 
-        private static string GetResourceText(string resourceName)
+            private static string GetResourceText(string resourceName)
         {
             Assembly asm = Assembly.GetExecutingAssembly();
             string[] resourceNames = asm.GetManifestResourceNames();

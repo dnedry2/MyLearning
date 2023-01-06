@@ -157,7 +157,7 @@ namespace MyDepression
 
         private void trgAddBtn_Click(object sender, EventArgs e)
         {
-            trainings.Add(new TFAT.TFATTraining("Short Name", "Full Name", 12, true, true));
+            trainings.Add(new TFAT.TFATTraining("Short Name", "Full Name", 12, true, true, ""));
         }
 
         private void trgList_SelectedIndexChanged(object sender, EventArgs e)
@@ -169,7 +169,8 @@ namespace MyDepression
             susBox.DataBindings.Clear();
             cbReqCiv.DataBindings.Clear();
             cbReqMil.DataBindings.Clear();
-
+            codeBox.DataBindings.Clear();
+            
             if (trgList.SelectedItem != null)
             {
                 trgSName.DataBindings.Add(new Binding("Text", trgList.SelectedItem, "SafeName", false, DataSourceUpdateMode.OnPropertyChanged));
@@ -177,6 +178,7 @@ namespace MyDepression
                 susBox.DataBindings.Add(new Binding("Value", trgList.SelectedItem, "Suspense", false, DataSourceUpdateMode.OnPropertyChanged));
                 cbReqCiv.DataBindings.Add(new Binding("Checked", trgList.SelectedItem, "ReqCiv", false, DataSourceUpdateMode.OnPropertyChanged));
                 cbReqMil.DataBindings.Add(new Binding("Checked", trgList.SelectedItem, "ReqMil", false, DataSourceUpdateMode.OnPropertyChanged));
+                codeBox.DataBindings.Add(new Binding("Text", trgList.SelectedItem, "Code", false, DataSourceUpdateMode.OnPropertyChanged));
             }
         }
 

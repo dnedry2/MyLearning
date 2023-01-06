@@ -5,6 +5,7 @@
             <tab idMso="TabAddIns" label="MyLearning">
                 <group id="group1" label="TFAT">
                     <button id="button1" size="large" imageMso="TableAutoFormat" onAction="button1_Click" label="Update Tracker" />
+					<button id="button5" size="large" imageMso="ChartInsert" onAction="button5_Click" label="Tracker Statistics" />
                     <button id="button2" size="large" imageMso="MailMergeStartEnvelopes" onAction="button2_Click" label="Notify Overdue" />
 					<button id="button4" imageMso="TableAutoFormat" onAction="button4_Click" label="New Tracker" />
                     <button id="button3" imageMso="TableSharePointListsModifyColumnsAndSettings" onAction="button3_Click" label="Setup" />
